@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>สมัครเข้าเซิร์ฟ ชีวิตมัธยม RP</title>
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 15px;
+}
+
+.container {
+    background: white;
+    padding: 25px;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 12px;
+    display: block;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 18px;
+    border: none;
+    border-radius: 12px;
+    background: #667eea;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #5563c1;
+}
+
+/* 📱 มือถือ */
+@media (max-width: 480px) {
+    .container {
+        padding: 18px;
+        border-radius: 15px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    input, select, textarea {
+        font-size: 13px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+    <h2>🏫 NovaLife RP</h2>
+
+    <form id="rpForm">
+        <label>ชื่อในเกม</label>
+        <input type="text" required>
+
+        <label>อายุจริง</label>
+        <input type="number" required>
+
+        <label>เพศ</label>
+        <select required>
+            <option value="">เลือกเพศ</option>
+            <option>ชาย</option>
+            <option>หญิง</option>
+            <option>อื่นๆ</option>
+        </select>
+
+        <label>ทำไมถึงอยากเข้าเซิร์ฟนี้</label>
+        <textarea required></textarea>
+
+        <label>อยากเล่นโรลเป็นอะไร</label>
+        <input type="text" required>
+
+        <label>รูปภาพตัวละคร (ไม่ใส่ก็ได้)</label>
+        <input type="file" accept="image/*">
+
+        <hr>
+
+        <label>ชื่อในโรล</label>
+        <input type="text" required>
+
+        <label>อายุในโรล</label>
+        <input type="number" required>
+
+        <button type="submit">ส่งใบสมัคร 🚀</button>
+    </form>
+
+    <div class="success" id="successMsg"></div>
+</div>
+
+<script>
+const webhookURL = "https://discordapp.com/api/webhooks/1473673370720665661/KchIua_i-LUfIxmrf0RQ_353DdHPt52NmmmZKbZAIwlEZv6yQ6HHnct7POtLJc8ntty5";
+
+document.getElementById("rpForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const inputs = this.querySelectorAll("input, select, textarea");
+
+    const data = {
+        content: "📥 มีใบสมัครใหม่!",
+        embeds: [{
+            title: "🏫 สมัครเข้า ชีวิตมัธยม RP",
+            color: 5814783,
+            fields: [
+                { name: "ชื่อในเกม", value: inputs[0].value, inline: true },
+                { name: "อายุจริง", value: inputs[1].value, inline: true },
+                { name: "เพศ", value: inputs[2].value, inline: true },
+                { name: "เหตุผลที่อยากเข้า", value: inputs[3].value },
+                { name: "อยากโรลเป็น", value: inputs[4].value },
+                { name: "ชื่อในโรล", value: inputs[6].value, inline: true },
+                { name: "อายุในโรล", value: inputs[7].value, inline: true }
+            ],
+            timestamp: new Date()
+        }]
+    };
+
+    try {
+        await fetch(webhookURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        });
+
+        document.getElementById("successMsg").textContent = "✅ ส่งใบสมัครเข้า Discord แล้ว!";
+        this.reset();
+
+    } catch (err) {
+        document.getElementById("successMsg").textContent = "❌ ส่งไม่สำเร็จ!";
+    }
+});
+</script>
+
+
+</body>
+</html>
+
+
+
+<!-- git init
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/Camille061/whilelist.git
+git push -u origin main -->
