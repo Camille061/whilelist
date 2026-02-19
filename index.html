@@ -131,47 +131,51 @@ button:hover {
 </div>
 
 <script>
-const webhookURL = "https://discordapp.com/api/webhooks/1473673370720665661/KchIua_i-LUfIxmrf0RQ_353DdHPt52NmmmZKbZAIwlEZv6yQ6HHnct7POtLJc8ntty5";
+const webhookURL = "https://discordapp.com/api/webhooks/1473673370720665661/KchIua_i-LUfIxmrf0RQ_353DdHPt52NmmmZKbZAIwlEZv6yQ6HHnct7POtLJc8ntty5"; // ส่งไป backend แทน
 
 document.getElementById("rpForm").addEventListener("submit", async function(e) {
     e.preventDefault();
 
-    const ign = document.getElementById("ign").value;
-    const discord = document.getElementById("discord").value;
-    const realAge = document.getElementById("realAge").value;
-    const gender = document.getElementById("gender").value;
-    const reason = document.getElementById("reason").value;
-    const roleWant = document.getElementById("roleWant").value;
-    const rpName = document.getElementById("rpName").value;
-    const rpAge = document.getElementById("rpAge").value;
+    const btn = this.querySelector("button");
+    btn.disabled = true;
+    btn.textContent = "กำลังส่ง...";
 
-    const data = {
-        content: "📥 มีใบสมัครใหม่!",
-        embeds: [{
-            title: "🏫 สมัครเข้า NovaLife RP",
-            color: 5814783,
-            fields: [
-                { name: "ชื่อในเกม", value: ign, inline: true },
-                { name: "ชื่อใน Discord", value: discord, inline: true },
-                { name: "อายุจริง", value: realAge, inline: true },
-                { name: "เพศ", value: gender, inline: true },
-                { name: "เหตุผลที่อยากเข้า", value: reason },
-                { name: "อยากโรลเป็น", value: roleWant },
-                { name: "ชื่อในโรล", value: rpName, inline: true },
-                { name: "อายุในโรล", value: rpAge, inline: true }
-            ],
-            timestamp: new Date()
-        }]
-    };
+    const ign = document.getElementById("ign").value.trim();
+    const discord = document.getElementById("discord").value.trim();
+    const realAge = parseInt(document.getElementById("realAge").value);
+    const gender = document.getElementById("gender").value;
+    const reason = document.getElementById("reason").value.trim();
+    const roleWant = document.getElementById("roleWant").value.trim();
+    const rpName = document.getElementById("rpName").value.trim();
+    const rpAge = parseInt(document.getElementById("rpAge").value);
+
+    if (realAge < 10) {
+        alert("อายุจริงต้องมากกว่า 10 ปี");
+        btn.disabled = false;
+        btn.textContent = "ส่งใบสมัคร 🚀";
+        return;
+    }
+
+    if (reason.length < 20) {
+        alert("เหตุผลต้องมากกว่า 20 ตัวอักษร");
+        btn.disabled = false;
+        btn.textContent = "ส่งใบสมัคร 🚀";
+        return;
+    }
 
     try {
-        await fetch(webhookURL, {
+        const res = await fetch(webhookURL, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
+            body: JSON.stringify({
+                ign, discord, realAge, gender,
+                reason, roleWant, rpName, rpAge
+            })
         });
 
-        document.getElementById("successMsg").textContent = "✅ ส่งใบสมัครเข้า Discord แล้ว!";
+        if (!res.ok) throw new Error();
+
+        document.getElementById("successMsg").textContent = "✅ ส่งใบสมัครสำเร็จ!";
         document.getElementById("successMsg").style.color = "green";
         this.reset();
 
@@ -179,8 +183,12 @@ document.getElementById("rpForm").addEventListener("submit", async function(e) {
         document.getElementById("successMsg").textContent = "❌ ส่งไม่สำเร็จ!";
         document.getElementById("successMsg").style.color = "red";
     }
+
+    btn.disabled = false;
+    btn.textContent = "ส่งใบสมัคร 🚀";
 });
 </script>
+
 
 </body>
 </html>
