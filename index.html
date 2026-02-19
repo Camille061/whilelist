@@ -4,10 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>สมัครเข้าเซิร์ฟ ชีวิตมัธยม RP</title>
+
 <style>
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
     font-family: sans-serif;
@@ -72,42 +71,39 @@ button:hover {
     background: #5563c1;
 }
 
-/* 📱 มือถือ */
+.success {
+    margin-top: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+
 @media (max-width: 480px) {
-    .container {
-        padding: 18px;
-        border-radius: 15px;
-    }
-
-    h2 {
-        font-size: 18px;
-    }
-
-    input, select, textarea {
-        font-size: 13px;
-    }
-
-    button {
-        font-size: 14px;
-    }
+    .container { padding: 18px; border-radius: 15px; }
+    h2 { font-size: 18px; }
+    input, select, textarea { font-size: 13px; }
+    button { font-size: 14px; }
 }
 </style>
-
 </head>
+
 <body>
 
 <div class="container">
     <h2>🏫 NovaLife RP</h2>
 
     <form id="rpForm">
+
         <label>ชื่อในเกม</label>
-        <input type="text" required>
+        <input type="text" id="ign" required>
+
+        <label>ชื่อใน Discord (@user หรือ user#1234)</label>
+        <input type="text" id="discord" required>
 
         <label>อายุจริง</label>
-        <input type="number" required>
+        <input type="number" id="realAge" required>
 
         <label>เพศ</label>
-        <select required>
+        <select id="gender" required>
             <option value="">เลือกเพศ</option>
             <option>ชาย</option>
             <option>หญิง</option>
@@ -115,21 +111,18 @@ button:hover {
         </select>
 
         <label>ทำไมถึงอยากเข้าเซิร์ฟนี้</label>
-        <textarea required></textarea>
+        <textarea id="reason" required></textarea>
 
         <label>อยากเล่นโรลเป็นอะไร</label>
-        <input type="text" required>
-
-        <label>รูปภาพตัวละคร (ไม่ใส่ก็ได้)</label>
-        <input type="file" accept="image/*">
+        <input type="text" id="roleWant" required>
 
         <hr>
 
         <label>ชื่อในโรล</label>
-        <input type="text" required>
+        <input type="text" id="rpName" required>
 
         <label>อายุในโรล</label>
-        <input type="number" required>
+        <input type="number" id="rpAge" required>
 
         <button type="submit">ส่งใบสมัคร 🚀</button>
     </form>
@@ -138,26 +131,34 @@ button:hover {
 </div>
 
 <script>
-const webhookURL = "https://discordapp.com/api/webhooks/1473673370720665661/KchIua_i-LUfIxmrf0RQ_353DdHPt52NmmmZKbZAIwlEZv6yQ6HHnct7POtLJc8ntty5";
+const webhookURL = "ใส่เว็บฮุคใหม่ของคุณตรงนี้";
 
 document.getElementById("rpForm").addEventListener("submit", async function(e) {
     e.preventDefault();
 
-    const inputs = this.querySelectorAll("input, select, textarea");
+    const ign = document.getElementById("ign").value;
+    const discord = document.getElementById("discord").value;
+    const realAge = document.getElementById("realAge").value;
+    const gender = document.getElementById("gender").value;
+    const reason = document.getElementById("reason").value;
+    const roleWant = document.getElementById("roleWant").value;
+    const rpName = document.getElementById("rpName").value;
+    const rpAge = document.getElementById("rpAge").value;
 
     const data = {
         content: "📥 มีใบสมัครใหม่!",
         embeds: [{
-            title: "🏫 สมัครเข้า ชีวิตมัธยม RP",
+            title: "🏫 สมัครเข้า NovaLife RP",
             color: 5814783,
             fields: [
-                { name: "ชื่อในเกม", value: inputs[0].value, inline: true },
-                { name: "อายุจริง", value: inputs[1].value, inline: true },
-                { name: "เพศ", value: inputs[2].value, inline: true },
-                { name: "เหตุผลที่อยากเข้า", value: inputs[3].value },
-                { name: "อยากโรลเป็น", value: inputs[4].value },
-                { name: "ชื่อในโรล", value: inputs[6].value, inline: true },
-                { name: "อายุในโรล", value: inputs[7].value, inline: true }
+                { name: "ชื่อในเกม", value: ign, inline: true },
+                { name: "ชื่อใน Discord", value: discord, inline: true },
+                { name: "อายุจริง", value: realAge, inline: true },
+                { name: "เพศ", value: gender, inline: true },
+                { name: "เหตุผลที่อยากเข้า", value: reason },
+                { name: "อยากโรลเป็น", value: roleWant },
+                { name: "ชื่อในโรล", value: rpName, inline: true },
+                { name: "อายุในโรล", value: rpAge, inline: true }
             ],
             timestamp: new Date()
         }]
@@ -171,18 +172,18 @@ document.getElementById("rpForm").addEventListener("submit", async function(e) {
         });
 
         document.getElementById("successMsg").textContent = "✅ ส่งใบสมัครเข้า Discord แล้ว!";
+        document.getElementById("successMsg").style.color = "green";
         this.reset();
 
     } catch (err) {
         document.getElementById("successMsg").textContent = "❌ ส่งไม่สำเร็จ!";
+        document.getElementById("successMsg").style.color = "red";
     }
 });
 </script>
 
-
 </body>
 </html>
-
 
 
 <!-- git init
