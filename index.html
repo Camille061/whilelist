@@ -3,152 +3,140 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Royal Virous Registry</title>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<title>Royal Arcane License</title>
 
 <style>
-*{ box-sizing:border-box; }
-
 body{
     margin:0;
     font-family: Georgia, serif;
-    background: radial-gradient(circle at top,#3b2f1e,#1a1208);
-    color:#2b1d0e;
-    padding:20px;
+    background: radial-gradient(circle at center,#3b1f00,#1a0d00);
 }
 
-.container{
+.wrapper{
     display:flex;
-    flex-wrap:wrap;
-    gap:30px;
     justify-content:center;
     align-items:flex-start;
+    gap:40px;
+    padding:40px;
+    flex-wrap:wrap;
 }
 
-/* ---------------- FORM ---------------- */
-
-form{
-    background:#f3e2c7;
-    padding:20px;
-    border-radius:12px;
+/* ===== FORM ===== */
+.form-section{
+    background:#e7d8bf;
+    padding:25px;
+    border-radius:15px;
     width:100%;
     max-width:360px;
-    box-shadow:0 0 25px rgba(0,0,0,0.7);
-}
-
-form h2{
-    text-align:center;
-    color:#5a3d1a;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
 
 input, select, textarea{
     width:100%;
-    padding:8px;
-    margin:6px 0;
-    border:1px solid #a67c52;
-    border-radius:6px;
-    background:#fff8e7;
-    font-family:Georgia;
+    padding:10px;
+    margin:8px 0;
+    border-radius:8px;
+    border:1px solid #8b6a3f;
+    background:#f5ead7;
+    font-family:inherit;
     font-size:14px;
-}
-
-textarea{
-    resize:none;
-    height:70px;
 }
 
 button{
     width:100%;
-    padding:10px;
-    margin-top:8px;
+    padding:12px;
+    margin-top:10px;
     border:none;
-    background:#7b5b2e;
+    border-radius:10px;
+    background:#7a5a2c;
     color:white;
     font-weight:bold;
-    border-radius:6px;
     cursor:pointer;
 }
 
 button:hover{
-    background:#5a3d1a;
+    background:#5c431f;
 }
 
-.counter{
-    margin-top:10px;
-    font-size:14px;
-    text-align:center;
-}
-
-/* ---------------- CARD ---------------- */
-
+/* ===== CARD ===== */
 .card{
+    background:#e3cda6;
+    padding:30px;
+    border-radius:20px;
     width:100%;
-    max-width:520px;
-    background:#f5deb3;
-    border:8px solid #7b5b2e;
-    border-radius:15px;
-    padding:20px;
-    position:relative;
-    box-shadow:0 0 40px rgba(0,0,0,0.8);
+    max-width:600px;
+    border:6px solid #7a5a2c;
+    box-shadow:0 15px 40px rgba(0,0,0,0.6);
 }
 
-.card h3{
-    margin:0;
-    font-size:18px;
+.card h2{
     text-align:center;
-    color:#5a3d1a;
+    margin-bottom:5px;
+    font-size:20px;
 }
 
-.license{
+.license-no{
     text-align:right;
     font-weight:bold;
-    margin-top:5px;
-    font-size:14px;
+    margin-bottom:15px;
 }
 
 .card-content{
     display:flex;
-    gap:15px;
-    margin-top:10px;
+    gap:20px;
     flex-wrap:wrap;
 }
 
-.profile{
-    width:110px;
-    height:140px;
-    border:3px solid #7b5b2e;
-    background:#ddd;
+.photo{
+    width:140px;
+    height:190px;
+    border:3px solid #7a5a2c;
+    background:#ccc;
+    overflow:hidden;
+    flex-shrink:0;
+}
+
+.photo img{
+    width:100%;
+    height:100%;
     object-fit:cover;
 }
 
 .info{
     flex:1;
-    font-size:14px;
+    min-width:180px;
 }
 
 .info p{
-    margin:4px 0;
+    margin:6px 0;
+    font-size:14px;
 }
 
-.element{
-    margin-top:8px;
-    font-size:18px;
-    font-weight:bold;
-}
-
-.seal{
-    font-size:12px;
-    opacity:0.7;
-    margin-top:8px;
-}
-
-/* Desktop layout */
-
-@media (min-width: 900px){
-    .container{
-        flex-wrap:nowrap;
+/* ===== MOBILE ===== */
+@media (max-width:768px){
+    .wrapper{
+        flex-direction:column;
         align-items:center;
+        padding:20px;
+        gap:25px;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    .card-content{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .photo{
+        width:120px;
+        height:160px;
+    }
+
+    .info{
+        width:100%;
     }
 }
 </style>
@@ -156,100 +144,100 @@ button:hover{
 
 <body>
 
-<div class="container">
+<div class="wrapper">
 
-<form id="registerForm">
-    <h2>📜 สมัครเข้าอาณาจักร</h2>
+<!-- FORM -->
+<div class="form-section">
+<input type="text" id="inputD" placeholder="ชื่อดิส">
+<input type="text" id="inputR" placeholder="ชื่อโรล">
+<input type="text" id="inputAge" placeholder="อายุโรล">
+<input type="text" id="inputHeight" placeholder="ส่วนสูงโรล">
+<input type="text" id="inputWeight" placeholder="น้ำหนักโรล">
 
-    <input type="text" id="discord" placeholder="ชื่อดิส" required>
-    <input type="text" id="roleName" placeholder="ชื่อโรล" required>
-    <input type="number" id="roleAge" placeholder="อายุโรล" required>
-    <input type="text" id="playRole" placeholder="บทที่อยากเล่น" required>
-    <textarea id="reason" placeholder="ทำไมถึงอยากเข้า..." required></textarea>
-    <input type="file" id="profileInput" accept="image/*">
+<select id="inputMagic">
+<option>ไฟ 🔥</option>
+<option>น้ำ 💧</option>
+<option>ลม 🌪️</option>
+<option>ดิน 🌿</option>
+<option>สายฟ้า ⚡</option>
+<option>แสง ✨</option>
+<option>มืด 🌑</option>
+<option>เสียง 🔊</option>
+</select>
 
-    <select id="element">
-        <option value="🌑 ธาตุมืด">🌑 ธาตุมืด</option>
-        <option value="🌕 ธาตุแสง">🌕 ธาตุแสง</option>
-        <option value="🎵 ธาตุเสียง">🎵 ธาตุเสียง</option>
-        <option value="🔥 ธาตุไฟ">🔥 ธาตุไฟ</option>
-        <option value="💧 ธาตุน้ำ">💧 ธาตุน้ำ</option>
-        <option value="🌪 ธาตุลม">🌪 ธาตุลม</option>
-    </select>
+<textarea id="inputReason" placeholder="เหตุผลที่เข้า"></textarea>
+<input type="file" accept="image/*" onchange="loadImage(event)">
 
-    <button type="submit">สร้างใบไวริส</button>
-    <button type="button" onclick="downloadCard()">⬇ ดาวน์โหลดบัตร</button>
+<button onclick="createCard()">สร้างบัตร</button>
+<button onclick="downloadCard()">ดาวน์โหลดบัตร</button>
+</div>
 
-    <div class="counter">
-        ออกใบไวริสไปแล้ว: <span id="totalCount">0</span> ใบ
-    </div>
-</form>
+<!-- CARD -->
+<div class="card" id="card">
+<h2>ROYAL ARCANE LICENSE</h2>
+<p class="license-no">ใบที่: <span id="licenseNo">1</span></p>
 
-<div class="card" id="idCard">
-    <h3>⚜ ROYAL VIR0US ARCANE LICENSE ⚜</h3>
+<div class="card-content">
 
-    <div class="license">
-        ใบไวริสใบที่ <span id="licenseNumber">0</span>
-    </div>
+<div class="photo">
+<img id="preview">
+</div>
 
-    <div class="card-content">
-        <img src="" class="profile" id="cardImage">
+<div class="info">
+<p><b>ชื่อดิส:</b> <span id="dName">-</span></p>
+<p><b>ชื่อโรล:</b> <span id="rName">-</span></p>
+<p><b>อายุโรล:</b> <span id="age">-</span></p>
+<p><b>ส่วนสูง:</b> <span id="height">-</span></p>
+<p><b>น้ำหนัก:</b> <span id="weight">-</span></p>
+<p><b>เวทย์สาย:</b> <span id="magic">-</span></p>
+<p><b>เหตุผล:</b> <span id="reasonText">-</span></p>
+</div>
 
-        <div class="info">
-            <p><b>ชื่อดิส:</b> <span id="cardDiscord">-</span></p>
-            <p><b>ชื่อโรล:</b> <span id="cardRoleName">-</span></p>
-            <p><b>อายุโรล:</b> <span id="cardRoleAge">-</span></p>
-            <p><b>บทที่เล่น:</b> <span id="cardPlayRole">-</span></p>
-            <p><b>เหตุผล:</b> <span id="cardReason">-</span></p>
-
-            <div class="element" id="cardElement">🌑 ธาตุมืด</div>
-            <div class="seal">Official Arcane Seal • Kingdom Registry</div>
-        </div>
-    </div>
+</div>
 </div>
 
 </div>
 
 <script>
-let total = localStorage.getItem("virousCount");
-if(!total){ total = 0; }
-document.getElementById("totalCount").textContent = total;
+let counter = localStorage.getItem("licenseCounter") || 1;
 
-document.getElementById("registerForm").addEventListener("submit", function(e){
-    e.preventDefault();
+function createCard(){
+    // อัปเดตข้อมูล
+    dName.innerText = inputD.value;
+    rName.innerText = inputR.value;
+    age.innerText = inputAge.value;
+    height.innerText = inputHeight.value;
+    weight.innerText = inputWeight.value;
+    magic.innerText = inputMagic.value;
+    reasonText.innerText = inputReason.value;
 
-    total++;
-    localStorage.setItem("virousCount", total);
+    // แสดงเลขใบ
+    licenseNo.innerText = counter;
 
-    document.getElementById("totalCount").textContent = total;
-    document.getElementById("licenseNumber").textContent = total;
+    // เพิ่มเลข
+    counter++;
+    localStorage.setItem("licenseCounter", counter);
+}
 
-    document.getElementById("cardDiscord").textContent = discord.value;
-    document.getElementById("cardRoleName").textContent = roleName.value;
-    document.getElementById("cardRoleAge").textContent = roleAge.value;
-    document.getElementById("cardPlayRole").textContent = playRole.value;
-    document.getElementById("cardReason").textContent = reason.value;
-    document.getElementById("cardElement").textContent = element.value;
-
-    const file = profileInput.files[0];
-    if(file){
-        const reader = new FileReader();
-        reader.onload = function(){
-            document.getElementById("cardImage").src = reader.result;
-        }
-        reader.readAsDataURL(file);
+function loadImage(event){
+    const reader = new FileReader();
+    reader.onload = function(){
+        preview.src = reader.result;
     }
-});
+    reader.readAsDataURL(event.target.files[0]);
+}
 
 function downloadCard(){
-    html2canvas(document.getElementById("idCard")).then(canvas=>{
+    html2canvas(document.getElementById("card")).then(canvas=>{
         const link = document.createElement("a");
-        link.download = "Royal_Virous_ID.png";
+        link.download = "arcane-license.png";
         link.href = canvas.toDataURL();
         link.click();
     });
 }
 </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 </body>
 </html>
