@@ -3,85 +3,127 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>สมัครเข้าเซิร์ฟ ชีวิตมัธยม RP</title>
+<title>Royal Virous Identification</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <style>
-* { box-sizing: border-box; }
-
-body {
-    font-family: sans-serif;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    padding: 15px;
+body{
+    margin:0;
+    font-family: "Georgia", serif;
+    background: radial-gradient(circle at top,#3b2f1e,#1a1208);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    color:#2b1d0e;
 }
 
-.container {
-    background: white;
-    padding: 25px;
-    width: 100%;
-    max-width: 600px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+.container{
+    display:flex;
+    gap:40px;
 }
 
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 22px;
+form{
+    background:#f3e2c7;
+    padding:25px;
+    border-radius:10px;
+    width:320px;
+    box-shadow:0 0 25px rgba(0,0,0,0.7);
 }
 
-label {
-    font-weight: bold;
-    margin-top: 12px;
-    display: block;
+form h2{
+    text-align:center;
+    color:#5a3d1a;
 }
 
-input, select, textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    font-size: 14px;
+input, select, textarea{
+    width:100%;
+    padding:8px;
+    margin:6px 0;
+    border:1px solid #a67c52;
+    border-radius:5px;
+    background:#fff8e7;
+    font-family:Georgia;
 }
 
-textarea {
-    resize: vertical;
-    min-height: 80px;
+textarea{
+    resize:none;
+    height:60px;
 }
 
-button {
-    width: 100%;
-    padding: 12px;
-    margin-top: 18px;
-    border: none;
-    border-radius: 12px;
-    background: #667eea;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
+button{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border:none;
+    background:#7b5b2e;
+    color:white;
+    font-weight:bold;
+    border-radius:6px;
+    cursor:pointer;
 }
 
-button:hover {
-    background: #5563c1;
+button:hover{
+    background:#5a3d1a;
 }
 
-.success {
-    margin-top: 15px;
-    text-align: center;
-    font-weight: bold;
+.card{
+    width:520px;
+    height:300px;
+    background:#f5deb3;
+    border:8px solid #7b5b2e;
+    border-radius:15px;
+    padding:20px;
+    position:relative;
+    box-shadow:0 0 40px rgba(0,0,0,0.8);
 }
 
-@media (max-width: 480px) {
-    .container { padding: 18px; border-radius: 15px; }
-    h2 { font-size: 18px; }
-    input, select, textarea { font-size: 13px; }
-    button { font-size: 14px; }
+.card h3{
+    margin:0;
+    font-size:20px;
+    text-align:center;
+    color:#5a3d1a;
+}
+
+.profile{
+    position:absolute;
+    left:20px;
+    top:60px;
+    width:120px;
+    height:150px;
+    border:3px solid #7b5b2e;
+    background:#ddd;
+    object-fit:cover;
+}
+
+.info{
+    position:absolute;
+    left:170px;
+    top:60px;
+    font-size:14px;
+    width:320px;
+}
+
+.reason{
+    font-size:12px;
+    margin-top:5px;
+}
+
+.element{
+    position:absolute;
+    bottom:20px;
+    right:20px;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.seal{
+    position:absolute;
+    bottom:15px;
+    left:20px;
+    font-size:12px;
+    opacity:0.7;
 }
 </style>
 </head>
@@ -89,117 +131,81 @@ button:hover {
 <body>
 
 <div class="container">
-    <h2>🏫 NovaLife RP</h2>
 
-    <form id="rpForm">
+<form id="registerForm">
+    <h2>📜 สมัครไวริส</h2>
+    <input type="text" id="discord" placeholder="ชื่อดิส" required>
+    <input type="text" id="roleName" placeholder="ชื่อโรล" required>
+    <input type="number" id="roleAge" placeholder="อายุโรล" required>
+    <input type="text" id="playRole" placeholder="บทที่อยากเล่น" required>
+    <textarea id="reason" placeholder="ทำไมถึงอยากเข้า..." required></textarea>
+    <input type="file" id="profileInput" accept="image/*">
 
-        <label>ชื่อในเกม</label>
-        <input type="text" id="ign" required>
+    <select id="element">
+        <option value="🌑 ธาตุมืด">🌑 ธาตุมืด</option>
+        <option value="🌕 ธาตุแสง">🌕 ธาตุแสง</option>
+        <option value="🎵 ธาตุเสียง">🎵 ธาตุเสียง</option>
+        <option value="🔥 ธาตุไฟ">🔥 ธาตุไฟ</option>
+        <option value="💧 ธาตุน้ำ">💧 ธาตุน้ำ</option>
+        <option value="🌪 ธาตุลม">🌪 ธาตุลม</option>
+    </select>
 
-        <label>ชื่อใน Discord (@user หรือ user#1234)</label>
-        <input type="text" id="discord" required>
+    <button type="submit">สร้างบัตรนักเวทย์</button>
+    <button type="button" onclick="downloadCard()">⬇ ดาวน์โหลดบัตร</button>
+</form>
 
-        <label>อายุจริง</label>
-        <input type="number" id="realAge" required>
+<div class="card" id="idCard">
+    <h3>⚜ ELDORIA ACADEMY ⚜</h3>
 
-        <label>เพศ</label>
-        <select id="gender" required>
-            <option value="">เลือกเพศ</option>
-            <option>ชาย</option>
-            <option>หญิง</option>
-            <option>อื่นๆ</option>
-        </select>
+    <img src="" class="profile" id="cardImage">
 
-        <label>ทำไมถึงอยากเข้าเซิร์ฟนี้</label>
-        <textarea id="reason" required></textarea>
+    <div class="info">
+        <p><b>ชื่อดิส:</b> <span id="cardDiscord">-</span></p>
+        <p><b>ชื่อโรล:</b> <span id="cardRoleName">-</span></p>
+        <p><b>อายุโรล:</b> <span id="cardRoleAge">-</span></p>
+        <p><b>บทที่เล่น:</b> <span id="cardPlayRole">-</span></p>
+        <div class="reason">
+            <b>เหตุผล:</b>
+            <span id="cardReason">-</span>
+        </div>
+    </div>
 
-        <label>อยากเล่นโรลเป็นอะไร</label>
-        <input type="text" id="roleWant" required>
+    <div class="element" id="cardElement">🌑</div>
+    <div class="seal">Official Arcane Seal • Kingdom Registry</div>
+</div>
 
-        <hr>
-
-        <label>ชื่อในโรล</label>
-        <input type="text" id="rpName" required>
-
-        <label>อายุในโรล</label>
-        <input type="number" id="rpAge" required>
-
-        <button type="submit">ส่งใบสมัคร 🚀</button>
-    </form>
-
-    <div class="success" id="successMsg"></div>
 </div>
 
 <script>
-const webhookURL = "https://discord.com/api/webhooks/1473673370720665661/KchIua_i-LUfIxmrf0RQ_353DdHPt52NmmmZKbZAIwlEZv6yQ6HHnct7POtLJc8ntty5";
-
-document.getElementById("rpForm").addEventListener("submit", async function(e) {
+registerForm.addEventListener("submit", function(e){
     e.preventDefault();
 
-    const btn = this.querySelector("button");
-    btn.disabled = true;
-    btn.textContent = "กำลังส่ง...";
+    cardDiscord.textContent = discord.value;
+    cardRoleName.textContent = roleName.value;
+    cardRoleAge.textContent = roleAge.value;
+    cardPlayRole.textContent = playRole.value;
+    cardReason.textContent = reason.value;
+    cardElement.textContent = element.value;
 
-    const ign = document.getElementById("ign").value.trim();
-    const discord = document.getElementById("discord").value.trim();
-    const realAge = document.getElementById("realAge").value;
-    const gender = document.getElementById("gender").value;
-    const reason = document.getElementById("reason").value.trim();
-    const roleWant = document.getElementById("roleWant").value.trim();
-    const rpName = document.getElementById("rpName").value.trim();
-    const rpAge = document.getElementById("rpAge").value;
-
-    const data = {
-        content: "📥 มีใบสมัครใหม่!",
-        embeds: [{
-            title: "🏫 สมัครเข้า NovaLife RP",
-            color: 5814783,
-            fields: [
-                { name: "ชื่อในเกม", value: ign || "ไม่มี", inline: true },
-                { name: "Discord", value: discord || "ไม่มี", inline: true },
-                { name: "อายุจริง", value: realAge || "ไม่มี", inline: true },
-                { name: "เพศ", value: gender || "ไม่มี", inline: true },
-                { name: "เหตุผล", value: reason || "ไม่มี" },
-                { name: "อยากโรลเป็น", value: roleWant || "ไม่มี" },
-                { name: "ชื่อในโรล", value: rpName || "ไม่มี", inline: true },
-                { name: "อายุในโรล", value: rpAge || "ไม่มี", inline: true }
-            ],
-            timestamp: new Date().toISOString()
-        }]
-    };
-
-    try {
-        const res = await fetch(webhookURL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
-        });
-
-        if (!res.ok) throw new Error();
-
-        document.getElementById("successMsg").textContent = "✅ ส่งใบสมัครสำเร็จ!";
-        document.getElementById("successMsg").style.color = "green";
-        this.reset();
-
-    } catch (err) {
-        document.getElementById("successMsg").textContent = "❌ ส่งไม่สำเร็จ!";
-        document.getElementById("successMsg").style.color = "red";
+    const file = profileInput.files[0];
+    if(file){
+        const reader = new FileReader();
+        reader.onload = function(){
+            cardImage.src = reader.result;
+        }
+        reader.readAsDataURL(file);
     }
-
-    btn.disabled = false;
-    btn.textContent = "ส่งใบสมัคร 🚀";
 });
+
+function downloadCard(){
+    html2canvas(document.getElementById("idCard")).then(canvas=>{
+        const link = document.createElement("a");
+        link.download = "Royal_Virous_ID.png";
+        link.href = canvas.toDataURL();
+        link.click();
+    });
+}
 </script>
-
-
 
 </body>
 </html>
-
-
-<!-- git init
-git add .
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/Camille061/whilelist.git
-git push -u origin main -->
