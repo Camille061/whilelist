@@ -3,241 +3,232 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Royal Arcane License</title>
+<title>Viris License System</title>
+<link rel="stylesheet" href="style.css">
 
 <style>
 body{
-    margin:0;
-    font-family: Georgia, serif;
-    background: radial-gradient(circle at center,#3b1f00,#1a0d00);
+  font-family: Georgia, serif;
+  background: linear-gradient(135deg,#1b1408,#2b1d0e,#140d05);
+  padding:20px;
+  color:#f5e6c8;
 }
 
-.wrapper{
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-    gap:40px;
-    padding:40px;
-    flex-wrap:wrap;
+h3{
+  margin-bottom:5px;
 }
 
-/* ===== FORM ===== */
-.form-section{
-    background:#e7d8bf;
-    padding:25px;
-    border-radius:15px;
-    width:100%;
-    max-width:360px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+.counter{
+  font-size:18px;
+  margin-bottom:15px;
+  color:#ffd86b;
 }
 
-input, select, textarea{
-    width:100%;
-    padding:10px;
-    margin:8px 0;
-    border-radius:8px;
-    border:1px solid #8b6a3f;
-    background:#f5ead7;
-    font-family:inherit;
-    font-size:14px;
+input, textarea, select{
+  display:block;
+  width:100%;
+  margin-bottom:10px;
+  padding:8px;
+  background:#f3e2c2;
+  border:1px solid #8b6b2e;
+  color:#3b2a14;
+}
+
+textarea{
+  height:55px;
+  resize:none;
 }
 
 button{
-    width:100%;
-    padding:12px;
-    margin-top:10px;
-    border:none;
-    border-radius:10px;
-    background:#7a5a2c;
-    color:white;
-    font-weight:bold;
-    cursor:pointer;
+  padding:10px 18px;
+  background:linear-gradient(to bottom,#c9a227,#8b6b2e);
+  color:white;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+  margin-right:5px;
 }
 
 button:hover{
-    background:#5c431f;
+  filter:brightness(1.1);
 }
 
-/* ===== CARD ===== */
 .card{
-    background:#e3cda6;
-    padding:30px;
-    border-radius:20px;
-    width:100%;
-    max-width:600px;
-    border:6px solid #7a5a2c;
-    box-shadow:0 15px 40px rgba(0,0,0,0.6);
-}
-
-.card h2{
-    text-align:center;
-    margin-bottom:5px;
-    font-size:20px;
-}
-
-.license-no{
-    text-align:right;
-    font-weight:bold;
-    margin-bottom:15px;
+  width:720px;
+  height: 350px;
+  background:linear-gradient(#f1e0bd,#e6d2a8);
+  border:12px double #8b6b2e;
+  padding:30px;
+  margin-top:30px;
+  display:none;
+  color:#673e09;
+  position:relative;
 }
 
 .card-content{
-    display:flex;
-    gap:20px;
-    flex-wrap:wrap;
+  display:flex;
+  gap:25px;
 }
 
-.photo{
-    width:140px;
-    height:190px;
-    border:3px solid #7a5a2c;
-    background:#ccc;
-    overflow:hidden;
-    flex-shrink:0;
-}
-
-.photo img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+.card img{
+  width:400px;
+  height:auto; /* แก้ไม่ให้ภาพบีบ */
+  object-fit:cover;
+  border: solid 8px #fff;
 }
 
 .info{
-    flex:1;
-    min-width:180px;
-}
-
-.info p{
-    margin:6px 0;
-    font-size:14px;
-}
-
-/* ===== MOBILE ===== */
-@media (max-width:768px){
-    .wrapper{
-        flex-direction:column;
-        align-items:center;
-        padding:20px;
-        gap:25px;
-    }
-
-    .card{
-        padding:20px;
-    }
-
-    .card-content{
-        flex-direction:column;
-        align-items:center;
-    }
-
-    .photo{
-        width:120px;
-        height:160px;
-    }
-
-    .info{
-        width:100%;
-    }
+  font-size:18px;
+  line-height:1.6;
+  max-width:380px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="wrapper">
-
-<!-- FORM -->
-<div class="form-section">
-<input type="text" id="inputD" placeholder="ชื่อดิส">
-<input type="text" id="inputR" placeholder="ชื่อโรล">
-<input type="text" id="inputAge" placeholder="อายุโรล">
-<input type="text" id="inputHeight" placeholder="ส่วนสูงโรล">
-<input type="text" id="inputWeight" placeholder="น้ำหนักโรล">
-
-<select id="inputMagic">
-<option>ไฟ 🔥</option>
-<option>น้ำ 💧</option>
-<option>ลม 🌪️</option>
-<option>ดิน 🌿</option>
-<option>สายฟ้า ⚡</option>
-<option>แสง ✨</option>
-<option>มืด 🌑</option>
-<option>เสียง 🔊</option>
-</select>
-
-<textarea id="inputReason" placeholder="เหตุผลที่เข้า"></textarea>
-<input type="file" accept="image/*" onchange="loadImage(event)">
-
-<button onclick="createCard()">สร้างบัตร</button>
-<button onclick="downloadCard()">ดาวน์โหลดบัตร</button>
+<h3>ระบบใบไวริส</h3>
+<div class="counter">
+จำนวนใบไวริสทั้งหมด: <span id="virisCount">0</span> ใบ
 </div>
 
-<!-- CARD -->
+<button id="reset" type="button" onclick="resetCount()" hidden>รีเซตใบไวริส</button>
+
+<form id="form">
+  <input type="text" id="discord" placeholder="ชื่อดิส" required>
+  <input type="text" id="role" placeholder="ชื่อโรล">
+  <input type="text" id="height" placeholder="ส่วนสูง">
+  <input type="text" id="weight" placeholder="น้ำหนัก">
+    <input type="text" id="character" placeholder="นิสัย">
+      <input type="text" id="ability" placeholder="ความสามารถพพิเศษ">
+
+  <select id="magic">
+    <option value="">เลือกเวทย์ธาตุ</option>
+    <option value="🔥 ไฟ">🔥 ไฟ</option>
+    <option value="🌊 น้ำ">🌊 น้ำ</option>
+    <option value="🍃ลม">🍃ลม</option>
+    <option value="🌍 ดิน"> 🌍 ดิน</option>
+    <option value="⚡ สายฟ้า">⚡ สายฟ้า</option>
+        <option value="🎶 เสียง">🎶 เสียง</option>
+        <option value="🌟 แสง">🌟 แสง</option>
+        <option value="🌑 มืด">🌑 มืด</option>
+        <option value=" 🧊 น้ำแข็ง"> 🧊 น้ำแข็ง</option>
+
+
+
+  </select>
+
+  <textarea id="reason" placeholder="เหตุผล"></textarea>
+  <input type="file" id="img" accept="image/*">
+  <input type="text" name="" id="adminreset" placeholder="รหัสรีเซ็ตใบไวริส(สำหรับแอดมิน)">
+
+  <button type="submit">สร้างใบไวริส</button>
+    <button id="resetbutton" type="submit">ลบใบไวริสทั้งหมด</button>
+
+</form>
+
 <div class="card" id="card">
-<h2>ROYAL ARCANE LICENSE</h2>
-<p class="license-no">ใบที่: <span id="licenseNo">1</span></p>
-
-<div class="card-content">
-
-<div class="photo">
-<img id="preview">
+  <h1 style="text-align:center;" class="title">✦ ELDORIA ACADEMY✦</h1>
+  <div class="card-content">
+    <img id="cardImg">
+    <div class="info" id="info"></div>
+  </div>
 </div>
 
-<div class="info">
-<p><b>ชื่อดิส:</b> <span id="dName">-</span></p>
-<p><b>ชื่อโรล:</b> <span id="rName">-</span></p>
-<p><b>อายุโรล:</b> <span id="age">-</span></p>
-<p><b>ส่วนสูง:</b> <span id="height">-</span></p>
-<p><b>น้ำหนัก:</b> <span id="weight">-</span></p>
-<p><b>เวทย์สาย:</b> <span id="magic">-</span></p>
-<p><b>เหตุผล:</b> <span id="reasonText">-</span></p>
-</div>
-
-</div>
-</div>
-
-</div>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
 <script>
-let counter = localStorage.getItem("licenseCounter") || 1;
+const form = document.getElementById("form");
+const card = document.getElementById("card");
+const info = document.getElementById("info");
+const cardImg = document.getElementById("cardImg");
+const imgInput = document.getElementById("img");
+const countDisplay = document.getElementById("virisCount");
 
-function createCard(){
-    // อัปเดตข้อมูล
-    dName.innerText = inputD.value;
-    rName.innerText = inputR.value;
-    age.innerText = inputAge.value;
-    height.innerText = inputHeight.value;
-    weight.innerText = inputWeight.value;
-    magic.innerText = inputMagic.value;
-    reasonText.innerText = inputReason.value;
+let imageData = "";
 
-    // แสดงเลขใบ
-    licenseNo.innerText = counter;
+// โหลดจำนวนจาก localStorage
+let virisCount = parseInt(localStorage.getItem("virisCount")) || 0;
+countDisplay.textContent = virisCount;
 
-    // เพิ่มเลข
-    counter++;
-    localStorage.setItem("licenseCounter", counter);
+// โหลดรูป
+imgInput.addEventListener("change", function(){
+  const reader = new FileReader();
+  reader.onload = e => imageData = e.target.result;
+  if(this.files[0]){
+    reader.readAsDataURL(this.files[0]);
+  }
+});
+
+form.addEventListener("submit", async (e)=>{
+  e.preventDefault();
+
+  const discord = document.getElementById("discord").value;
+  const role = document.getElementById("role").value;
+  const height = document.getElementById("height").value;
+  const weight = document.getElementById("weight").value;
+  const magic = document.getElementById("magic").value;
+  const reason = document.getElementById("reason").value;
+   const character = document.getElementById("character").value;
+    const ability = document.getElementById("ability").value;
+
+  // เพิ่มจำนวนใบ
+  virisCount++;
+  localStorage.setItem("virisCount", virisCount);
+  countDisplay.textContent = virisCount;
+
+  info.innerHTML = `
+    <b>เลขใบ:</b> ${String(virisCount).padStart()}<br>
+    <b>ชื่อดิส:</b> ${discord}<br>
+    <b>ชื่อโรล:</b> ${role}<br>
+    <b>ส่วนสูง:</b> ${height}<br>
+    <b>น้ำหนัก:</b> ${weight}<br>
+    <b>เวทย์:</b> ${magic}<br>
+    <b>เหตุผล:</b> ${reason}<br>
+    <b>นิสัย:</b> ${character}<br>
+    <b>ความสามารถพิเศษ:</b>${ability}<br>
+  `;
+
+  cardImg.src = imageData || "";
+  card.style.display = "block";
+
+  // โหลดเป็นรูป
+  setTimeout(async ()=>{
+    const canvas = await html2canvas(card);
+    const link = document.createElement("a");
+    link.download = "viris_license.png";
+    link.href = canvas.toDataURL();
+    link.click();
+  }, 300);
+});
+
+// รีเซ็ตจำนวน
+function resetCount(){
+  virisCount = 0;
+  localStorage.setItem("virisCount", 0);
+  countDisplay.textContent = 0;
 }
 
-function loadImage(event){
-    const reader = new FileReader();
-    reader.onload = function(){
-        preview.src = reader.result;
-    }
-    reader.readAsDataURL(event.target.files[0]);
-}
+let reset = document.getElementById("reset")
+let adminReset = document.getElementById("adminreset")
+let resetButton = document.getElementById("resetbutton")
 
-function downloadCard(){
-    html2canvas(document.getElementById("card")).then(canvas=>{
-        const link = document.createElement("a");
-        link.download = "arcane-license.png";
-        link.href = canvas.toDataURL();
-        link.click();
-    });
+
+resetButton.onclick = () => {
+//รู้ว่ามาส่องแต่อย่าลบนะครับผมขอร้อง
+if (adminReset.value == 111) {
+  reset.hidden = false
+}
 }
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
 </body>
 </html>
+
+<!-- 
+git init
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/Camille061/whilelist.git
+git push -u origin main -->
