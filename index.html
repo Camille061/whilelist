@@ -2,240 +2,209 @@
 <html lang="th">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Viris License System</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viris License System</title>
 
-  <style>
-    body {
-      font-family: Georgia, serif;
-      background: linear-gradient(135deg, #1b1408, #2b1d0e, #140d05);
-      padding: 20px;
-      color: #f5e6c8;
-    }
+<style>
+body {
+  font-family: Georgia, serif;
+  background: linear-gradient(135deg, #1b1408, #2b1d0e, #140d05);
+  padding: 20px;
+  color: #f5e6c8;
+}
 
-    h3 {
-      margin-bottom: 5px;
-    }
+.counter {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #ffd86b;
+}
 
-    .counter {
-      font-size: 18px;
-      margin-bottom: 15px;
-      color: #ffd86b;
-    }
+input, textarea, select {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  background: #f3e2c2;
+  border: 1px solid #8b6b2e;
+  color: #3b2a14;
+}
 
-    input,
-    textarea,
-    select {
-      display: block;
-      width: 100%;
-      margin-bottom: 10px;
-      padding: 8px;
-      background: #f3e2c2;
-      border: 1px solid #8b6b2e;
-      color: #3b2a14;
-    }
+textarea {
+  height: 55px;
+  resize: none;
+}
 
-    textarea {
-      height: 55px;
-      resize: none;
-    }
+button {
+  padding: 10px 18px;
+  background: linear-gradient(to bottom, #c9a227, #8b6b2e);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  margin-right: 5px;
+}
 
-    button {
-      padding: 10px 18px;
-      background: linear-gradient(to bottom, #c9a227, #8b6b2e);
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-      margin-right: 5px;
-    }
+button:hover {
+  filter: brightness(1.1);
+}
 
-    button:hover {
-      filter: brightness(1.1);
-    }
+.card {
+  width: 720px;
+  height: 500px;
+  background: linear-gradient(#dfcdaa, #d8c49a);
+  border: 12px double #8b6b2e;
+  padding: 30px;
+  margin-top: 30px;
+  display: none;
+  color: #673e09;
+  position: relative;
+  text-shadow: 0 4px 10px #00000055;
+}
 
-    .card {
-      width: 720px;
-      height: 500px;
-      background: linear-gradient(#dfcdaa, #d8c49a);
-      border: 12px double #8b6b2e;
-      padding: 30px;
-      margin-top: 30px;
-      display: none;
-      color: #673e09;
-      position: relative;
-      text-shadow: 0 4px 10px #00000055;
-    }
+.card-content {
+  display: flex;
+  gap: 25px;
+}
 
-    .card-content {
-      display: flex;
-      gap: 25px;
-    }
+.card img {
+  width: 400px;
+  height: auto;
+  object-fit: cover;
+  border: solid 8px #fff;
+  box-shadow: 0 4px 10px #0f0000;
+}
 
-    .card img {
-      width: 400px;
-      height: auto;
-      /* แก้ไม่ให้ภาพบีบ */
-      object-fit: cover;
-      border: solid 8px #fff;
-      box-shadow: 0 4px 10px #0f0000;
-    }
-
-    .info {
-      font-size: 18px;
-      line-height: 1.6;
-      max-width: 380px;
-    }
-  </style>
+.info {
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 380px;
+}
+</style>
 </head>
 
 <body>
 
-  <h3>สมัครใบไวริส</h3>
-  <div class="counter">
-  
+<h3>สมัครใบไวริส</h3>
+
+<div class="counter">
+  ใบไวริสทั้งหมด: <span id="countDisplay">0</span>
+</div>
+
+<form id="form">
+  <input type="text" id="discord" placeholder="ชื่อดิส" required>
+  <input type="text" id="role" placeholder="ชื่อโรล">
+  <input type="text" id="height" placeholder="ส่วนสูง">
+  <input type="text" id="weight" placeholder="น้ำหนัก">
+  <input type="text" id="age" placeholder="อายุ">
+  <input type="text" id="character" placeholder="นิสัย">
+  <input type="text" id="ability" placeholder="ความสามารถพิเศษ">
+
+  <select id="magic">
+    <option value="">เลือกบทบาท</option>
+    <option value="นักเรียน">นักเรียน</option>
+    <option value="อาจารย์">อาจารย์</option>
+    <option value="นักล่าค่าหัว">นักล่าค่าหัว</option>
+    <option value="ผู้พิทักษ์">ผู้พิทักษ์</option>
+    <option value="คนทำอาหาร">คนทำอาหาร</option>
+    <option value="คนขายโพชั่น+ปรุงยา">คนขายโพชั่น+ปรุงยา</option>
+  </select>
+
+  <textarea id="reason" placeholder="เหตุผล"></textarea>
+  <input type="file" id="img" accept="image/*">
+
+  <input type="password" id="adminreset" placeholder="รหัสรีเซ็ต (แอดมินเท่านั้น)">
+
+  <button type="submit">สร้างใบไวริส</button>
+  <button type="button" id="resetbutton">ลบใบไวริสทั้งหมด</button>
+</form>
+
+<div class="card" id="card">
+  <h1 style="text-align:center;">✦ ELDORIA ACADEMY ✦</h1>
+  <div class="card-content">
+    <img id="cardImg">
+    <div class="info" id="info"></div>
   </div>
+</div>
 
-  <button id="reset" type="button" onclick="resetCount()" hidden>รีเซตใบไวริส</button>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
-  <form id="form">
-    <input type="text" id="discord" placeholder="ชื่อดิส" required>
-    <input type="text" id="role" placeholder="ชื่อโรล">
-    <input type="text" id="height" placeholder="ส่วนสูง">
-    <input type="text" id="weight" placeholder="น้ำหนัก">
-    <input type="text" id="age" placeholder="อายุ">
-    <input type="text" id="character" placeholder="นิสัย">
-    <input type="text" id="ability" placeholder="ความสามารถพพิเศษ">
+<script>
+const form = document.getElementById("form");
+const card = document.getElementById("card");
+const info = document.getElementById("info");
+const cardImg = document.getElementById("cardImg");
+const imgInput = document.getElementById("img");
+const countDisplay = document.getElementById("countDisplay");
+const resetButton = document.getElementById("resetbutton");
+const adminReset = document.getElementById("adminreset");
 
+let imageData = "";
+let virisCount = parseInt(localStorage.getItem("virisCount")) || 0;
 
+countDisplay.textContent = virisCount;
 
-    <select id="magic">
-      <option value="">เลือกบทบาท</option>
-      <option value=" นักเรียน"> นักเรียน</option>
-      <option value=" อาจารย์"> อาจารย์</option>
-      <option value="นักล่าค่าหัว">นักล่าค่าหัว</option>
-      <option value=" ผู้พิทักษ์"> ผู้พิทักษ์</option>
-      <option value=" คนทำอาหาร"> คนทำอาหาร</option>
-      <option value=" คนขายโพชั่น+ปรุงยา"> คนขายโพชั่น+ปรุงยา</option>
-    </select>
+imgInput.addEventListener("change", function () {
+  const reader = new FileReader();
+  reader.onload = e => imageData = e.target.result;
+  if (this.files[0]) {
+    reader.readAsDataURL(this.files[0]);
+  }
+});
 
-    <textarea id="reason" placeholder="เหตุผล"></textarea>
-    <input type="file" id="img" accept="image/*">
-    <input type="text" name="" id="adminreset" placeholder="รหัสรีเซ็ตใบไวริส(สำหรับแอดมิน)">
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-    <button type="submit">สร้างใบไวริส</button>
-    <button id="resetbutton" type="submit">ลบใบไวริสทั้งหมด</button>
+  virisCount++;
+  localStorage.setItem("virisCount", virisCount);
+  countDisplay.textContent = virisCount;
 
-  </form>
+  const discord = document.getElementById("discord").value;
+  const role = document.getElementById("role").value;
+  const height = document.getElementById("height").value;
+  const weight = document.getElementById("weight").value;
+  const magic = document.getElementById("magic").value;
+  const reason = document.getElementById("reason").value;
+  const character = document.getElementById("character").value;
+  const ability = document.getElementById("ability").value;
+  const age = document.getElementById("age").value;
 
-  <div class="card" id="card">
-    <h1 style="text-align:center;" class="title">✦ ELDORIA ACADEMY✦</h1>
-    <div class="card-content">
-      <img id="cardImg">
-      <div class="info" id="info"></div>
-    </div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-
-  <script>
-    const form = document.getElementById("form");
-    const card = document.getElementById("card");
-    const info = document.getElementById("info");
-    const cardImg = document.getElementById("cardImg");
-    const imgInput = document.getElementById("img");
-    const countDisplay = document.getElementById("virisCount");
-
-    let imageData = "";
-
-    // โหลดจำนวนจาก localStorage
-    let virisCount = parseInt(localStorage.getItem("virisCount")) || 0;
-    countDisplay.textContent = virisCount;
-
-    // โหลดรูป
-    imgInput.addEventListener("change", function () {
-      const reader = new FileReader();
-      reader.onload = e => imageData = e.target.result;
-      if (this.files[0]) {
-        reader.readAsDataURL(this.files[0]);
-      }
-    });
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const discord = document.getElementById("discord").value;
-      const role = document.getElementById("role").value;
-      const height = document.getElementById("height").value;
-      const weight = document.getElementById("weight").value;
-      const magic = document.getElementById("magic").value;
-      const reason = document.getElementById("reason").value;
-      const character = document.getElementById("character").value;
-      const ability = document.getElementById("ability").value;
-      const age = document.getElementById("age").value;
-
-
-      // เพิ่มจำนวนใบ
-  
-      localStorage.setItem("virisCount", virisCount);
-      countDisplay.textContent = virisCount;
-
-      info.innerHTML = `
-    <b>เลขใบ:</b> ${String(virisCount).padStart()}<br>
-    <b>ชื่อดิส:</b> ${discord}<br>
-    <b>ชื่อโรล:</b> ${role}<br>
-    <b>ส่วนสูง:</b> ${height}<br>
-    <b>น้ำหนัก:</b> ${weight}<br>
-      <b>อายุ:</b>${age}<br>
-    <b>นิสัย:</b> ${character}<br>
-    <b>บทบาท:</b> ${magic}<br>
-    <b>เหตุผล:</b> ${reason}<br>
-    <b>ความสามารถพิเศษ:</b>${ability}<br>
+  info.innerHTML = `
+  <b>เลขใบ:</b> ${String(virisCount).padStart(3, "0")}<br>
+  <b>ชื่อดิส:</b> ${discord}<br>
+  <b>ชื่อโรล:</b> ${role}<br>
+  <b>ส่วนสูง:</b> ${height}<br>
+  <b>น้ำหนัก:</b> ${weight}<br>
+  <b>อายุ:</b> ${age}<br>
+  <b>นิสัย:</b> ${character}<br>
+  <b>บทบาท:</b> ${magic}<br>
+  <b>เหตุผล:</b> ${reason}<br>
+  <b>ความสามารถพิเศษ:</b> ${ability}
   `;
 
-      cardImg.src = imageData || "";
-      card.style.display = "block";
+  cardImg.src = imageData || "";
+  card.style.display = "block";
 
-      // โหลดเป็นรูป
-      setTimeout(async () => {
-        const canvas = await html2canvas(card);
-        const link = document.createElement("a");
-        link.download = "viris_license.png";
-        link.href = canvas.toDataURL();
-        link.click();
-      }, 300);
-    });
+  setTimeout(async () => {
+    const canvas = await html2canvas(card);
+    const link = document.createElement("a");
+    link.download = "viris_license_" + virisCount + ".png";
+    link.href = canvas.toDataURL();
+    link.click();
+  }, 300);
+});
 
-    // รีเซ็ตจำนวน
-    function resetCount() {
-      virisCount = 0;
-      localStorage.setItem("virisCount", 0);
-      countDisplay.textContent = 0;
-    }
-
-    let reset = document.getElementById("reset")
-    let adminReset = document.getElementById("adminreset")
-    let resetButton = document.getElementById("resetbutton")
-
-
-    resetButton.onclick = () => {
-      //รู้ว่ามาส่องแต่อย่าลบนะครับผมขอร้อง
-      if (adminReset.value == 111) {
-        reset.hidden = false
-      }
-    }
-  </script>
+resetButton.onclick = () => {
+  if (adminReset.value === "111") {
+    localStorage.setItem("virisCount", 0);
+    virisCount = 0;
+    countDisplay.textContent = 0;
+    alert("รีเซ็ตเรียบร้อย");
+  } else {
+    alert("รหัสไม่ถูกต้อง");
+  }
+};
+</script>
 
 </body>
-
 </html>
-
-<!-- 
-git init
-git add .
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/Camille061/whilelist.git
-git push -u origin main -->
