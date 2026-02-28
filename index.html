@@ -55,7 +55,7 @@ button:hover{
 
 .card{
   width:720px;
-  height: 350px;
+  height: 380px;
   background:linear-gradient(#f1e0bd,#e6d2a8);
   border:12px double #8b6b2e;
   padding:30px;
@@ -100,6 +100,7 @@ button:hover{
   <input type="text" id="height" placeholder="ส่วนสูง">
   <input type="text" id="weight" placeholder="น้ำหนัก">
     <input type="text" id="character" placeholder="นิสัย">
+    <input type="text" id="roleplay" placeholder="บทบาท">
       <input type="text" id="ability" placeholder="ความสามารถพพิเศษ">
 
   <select id="magic">
@@ -109,9 +110,9 @@ button:hover{
     <option value="🍃ลม">🍃ลม</option>
     <option value="🌍 ดิน"> 🌍 ดิน</option>
     <option value="⚡ สายฟ้า">⚡ สายฟ้า</option>
-        <option value="🎶 เสียง">🎶 เสียง</option>
-        <option value="🌟 แสง">🌟 แสง</option>
-        <option value="🌑 มืด">🌑 มืด</option>
+        <!-- <option value="🎶 เสียง">🎶 เสียง</option> -->
+        <!-- <option value="🌟 แสง">🌟 แสง</option>
+        <option value="🌑 มืด">🌑 มืด</option> -->
         <option value=" 🧊 น้ำแข็ง"> 🧊 น้ำแข็ง</option>
 
 
@@ -171,6 +172,7 @@ form.addEventListener("submit", async (e)=>{
   const reason = document.getElementById("reason").value;
    const character = document.getElementById("character").value;
     const ability = document.getElementById("ability").value;
+      const roleplay = document.getElementById("roleplay").value;
 
   // เพิ่มจำนวนใบ
   virisCount++;
@@ -183,6 +185,8 @@ form.addEventListener("submit", async (e)=>{
     <b>ชื่อโรล:</b> ${role}<br>
     <b>ส่วนสูง:</b> ${height}<br>
     <b>น้ำหนัก:</b> ${weight}<br>
+    <b>นิสัย:</b> ${character}<br>
+      <b>นิสัย:</b> ${roleplay}<br>
     <b>เวทย์:</b> ${magic}<br>
     <b>เหตุผล:</b> ${reason}<br>
     <b>นิสัย:</b> ${character}<br>
