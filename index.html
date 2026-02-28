@@ -59,13 +59,14 @@
     .card {
       width: 720px;
       height: 500px;
-      background: linear-gradient(#f1e0bd, #e6d2a8);
+      background: linear-gradient(#dfcdaa, #d8c49a);
       border: 12px double #8b6b2e;
       padding: 30px;
       margin-top: 30px;
       display: none;
       color: #673e09;
       position: relative;
+      text-shadow: 0 4px 10px #00000055;
     }
 
     .card-content {
@@ -79,6 +80,7 @@
       /* แก้ไม่ให้ภาพบีบ */
       object-fit: cover;
       border: solid 8px #fff;
+            box-shadow: 0 4px 10px #0f0000;
     }
 
     .info {
@@ -104,19 +106,15 @@
     <input type="text" id="height" placeholder="ส่วนสูง">
     <input type="text" id="weight" placeholder="น้ำหนัก">
     <input type="text" id="character" placeholder="นิสัย">
-    <input type="text" id="roleplay" placeholder="บทบาท">
     <input type="text" id="ability" placeholder="ความสามารถพพิเศษ">
 
     <select id="magic">
-      <option value="">เลือกเวทย์ธาตุ</option>
+      <option value="">เลือกบทบาท</option>
       <option value=" นักเรียน"> นักเรียน</option>
       <option value=" อาจารย์"> อาจารย์</option>
       <option value="นักล่าค่าหัว">นักล่าค่าหัว</option>
       <option value=" ผู้พิทักษ์">  ผู้พิทักษ์</option>
       <option value=" คนทำอาหาร"> สายฟ้า</option>
-      <option value=" 🧊 น้ำแข็ง"> 🧊 น้ำแข็ง</option>
-
-
 
     </select>
 
@@ -173,7 +171,7 @@
       const reason = document.getElementById("reason").value;
       const character = document.getElementById("character").value;
       const ability = document.getElementById("ability").value;
-      const roleplay = document.getElementById("roleplay").value;
+
 
       // เพิ่มจำนวนใบ
       virisCount++;
@@ -187,7 +185,6 @@
     <b>ส่วนสูง:</b> ${height}<br>
     <b>น้ำหนัก:</b> ${weight}<br>
     <b>นิสัย:</b> ${character}<br>
-   <b>บทบาท:</b> ${roleplay}<br>
     <b>เวทย์:</b> ${magic}<br>
     <b>เหตุผล:</b> ${reason}<br>
     <b>ความสามารถพิเศษ:</b>${ability}<br>
