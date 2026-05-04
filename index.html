@@ -4,31 +4,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Viris License System</title>
-<link rel="stylesheet" href="style.css">
+<title>Cyberpunk Card</title>
 
 <style>
 body {
   font-family: Georgia, serif;
-  background: linear-gradient(135deg, #1b1408, #2b1d0e, #140d05);
   padding: 20px;
   color: #f5e6c8;
-}
-
-.counter {
-  font-size: 18px;
-  margin-bottom: 15px;
-  color: #ffd86b;
+  background-image: url(img/cyber2.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 input, textarea, select {
   display: block;
-  width: 100%;
-  margin-bottom: 10px;
+  width: 50%;
+  margin: 10px auto;
   padding: 8px;
-  background: #f3e2c2;
-  border: 1px solid #8b6b2e;
-  color: #3b2a14;
+  background: #232323;
+  border: 1px solid #ff0000;
+  color: #fff;
 }
 
 textarea {
@@ -38,59 +33,61 @@ textarea {
 
 button {
   padding: 10px 18px;
-  background: linear-gradient(to bottom, #c9a227, #8b6b2e);
+  background: linear-gradient(to bottom, #ffffff, #828282, #ff0000);
   color: white;
   border: none;
   cursor: pointer;
   font-weight: bold;
-  margin-right: 5px;
-}
-
-button:hover {
-  filter: brightness(1.1);
+  margin: 5px;
 }
 
 .card {
   width: 720px;
-  height: 500px;
-  background: linear-gradient(#dfcdaa, #d8c49a);
-  border: 12px double #8b6b2e;
-  padding: 30px;
-  margin-top: 30px;
+  height: 350px;
+  background-image: url(img/cyber3.jpg);
+  background-size: cover;
+  border: 5px solid #ff0000;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #ff0000aa;
+  padding: 20px;
+  margin: 30px auto;
   display: none;
-  color: #673e09;
-  position: relative;
-  text-shadow: 0 4px 10px #00000055;
+  color: #ffffff;
 }
 
 .card-content {
   display: flex;
-  gap: 25px;
+  gap: 20px;
+  align-items: center;
 }
 
-.card img {
-  width: 400px;
-  height: auto;
+/* ✅ กล่องครอบรูป */
+.img-box {
+  width: 230px;
+  height: 230px;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 4px solid #fff;
+  box-shadow: 0 0 15px #00fff7;
+}
+
+/* ✅ รูปไม่บีบ ไม่ทะลุ */
+.img-box img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border: solid 8px #fff;
-  box-shadow: 0 4px 10px #0f0000;
 }
 
 .info {
-  font-size: 18px;
-  line-height: 1.6;
-  max-width: 380px;
+  font-size: 14px;
+  line-height: 1.5;
 }
 </style>
 </head>
 
 <body>
 
-<h3>สมัครใบไวริส</h3>
-
-<div class="counter">
-  ใบไวริสทั้งหมด: <span id="countDisplay">0</span>
-</div>
+<h3 style="color: #ff0000;">สมัครไวริส</h3>
 
 <form id="form">
   <input type="text" id="discord" placeholder="ชื่อดิส" required>
@@ -103,34 +100,43 @@ button:hover {
 
   <select id="magic">
     <option value="">เลือกบทบาท</option>
-    <option value="นักเรียน">นักเรียน 🧒</option>
-    <option value="อาจารย์">อาจารย์🧑‍🏫</option>
-    <option value="นักล่าค่าหัว">นักล่าค่าหัว 🏴‍☠️</option>
-    <option value="ผู้พิทักษ์">ผู้พิทักษ์ 🗡️</option>
-    <option value="คนทำอาหาร">คนทำอาหาร</option>
-    <option value="คนขายโพชั่น+ปรุงยา">คนขายโพชั่น+ปรุงยา 💊</option>
-        <option value="กษัตริย์เอเธอร์">กษัตริย์เอเธอร์ 👑</option>
-           <option value="องครักษ์🗡️">องครักษ์ 🗡️</option>
+    <option value="นักเรียน">นักเรียน</option>
+    <option value="อาจารย์">อาจารย์</option>
+    <option value="นักล่าค่าหัว">นักล่าค่าหัว</option>
+    <option value="ผู้พิทักษ์">ผู้พิทักษ์</option>
   </select>
 
   <textarea id="reason" placeholder="เหตุผล"></textarea>
   <input type="file" id="img" accept="image/*">
 
-  <input type="password" id="adminreset" placeholder="รหัสรีเซ็ต (แอดมินเท่านั้น)">
-
-  <button type="submit">สร้างใบไวริส</button>
-  <button type="button" id="resetbutton">ลบใบไวริสทั้งหมด</button>
+  <div style="text-align:center;">
+    <button type="submit">สร้างไวริส</button>
+  </div>
 </form>
 
 <div class="card" id="card">
-  <h1 style="text-align:center;" class="title">✦ ELDORIA ACADEMY ✦</h1>
+  <h1 style="
+    text-align:center;
+    color: #ffd300;
+    text-shadow:
+      0 0 5px #ffd300,
+      0 0 10px #ffd300,
+      0 0 20px #ffea00,
+      0 0 40px #ffcc00;
+  ">
+  ✦ Cyberpunk ✦
+  </h1>
+
   <div class="card-content">
-    <img id="cardImg">
+    
+    <!-- ✅ ใช้ img-box -->
+    <div class="img-box">
+      <img id="cardImg">
+    </div>
+
     <div class="info" id="info"></div>
   </div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
 <script>
 const form = document.getElementById("form");
@@ -138,29 +144,22 @@ const card = document.getElementById("card");
 const info = document.getElementById("info");
 const cardImg = document.getElementById("cardImg");
 const imgInput = document.getElementById("img");
-const countDisplay = document.getElementById("countDisplay");
-const resetButton = document.getElementById("resetbutton");
-const adminReset = document.getElementById("adminreset");
 
 let imageData = "";
-let virisCount = parseInt(localStorage.getItem("virisCount")) || 0;
 
-countDisplay.textContent = virisCount;
-
+/* โหลดรูป */
 imgInput.addEventListener("change", function () {
   const reader = new FileReader();
   reader.onload = e => imageData = e.target.result;
+
   if (this.files[0]) {
     reader.readAsDataURL(this.files[0]);
   }
 });
 
-form.addEventListener("submit", async (e) => {
+/* submit */
+form.addEventListener("submit", (e) => {
   e.preventDefault();
-
-  virisCount++;
-  localStorage.setItem("virisCount", virisCount);
-  countDisplay.textContent = virisCount;
 
   const discord = document.getElementById("discord").value;
   const role = document.getElementById("role").value;
@@ -173,40 +172,23 @@ form.addEventListener("submit", async (e) => {
   const age = document.getElementById("age").value;
 
   info.innerHTML = `
-  <b>เลขใบ:</b> ${String(virisCount).padStart(3, "0")}<br>
-  <b>ชื่อดิส:</b> ${discord}<br>
-  <b>ชื่อโรล:</b> ${role}<br>
+  <b>ชื่อ:</b> ${discord}<br>
+  <b>โรล:</b> ${role}<br>
   <b>ส่วนสูง:</b> ${height}<br>
   <b>น้ำหนัก:</b> ${weight}<br>
   <b>อายุ:</b> ${age}<br>
   <b>นิสัย:</b> ${character}<br>
   <b>บทบาท:</b> ${magic}<br>
   <b>เหตุผล:</b> ${reason}<br>
-  <b>ความสามารถพิเศษ:</b> ${ability}
+  <b>ความสามารถ:</b> ${ability}
   `;
 
   cardImg.src = imageData || "";
   card.style.display = "block";
 
-  setTimeout(async () => {
-    const canvas = await html2canvas(card);
-    const link = document.createElement("a");
-    link.download = "viris_license_" + virisCount + ".png";
-    link.href = canvas.toDataURL();
-    link.click();
-  }, 300);
+  form.reset();
+  imageData = "";
 });
-
-resetButton.onclick = () => {
-  if (adminReset.value === "111") {
-    localStorage.setItem("virisCount", 0);
-    virisCount = 0;
-    countDisplay.textContent = 0;
-    alert("รีเซ็ตเรียบร้อย");
-  } else {
-    alert("รหัสไม่ถูกต้อง");
-  }
-};
 </script>
 
 </body>
