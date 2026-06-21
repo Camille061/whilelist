@@ -2,118 +2,230 @@
 <html lang="th">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cyberpunk Card</title>
-<link rel="stylesheet" href="style.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyberpunk Whitelist</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
 
-<h3 style="color: #ff0000;">สมัครไวริส</h3>
+  <div class="cp-wrap">
+    <div class="cp-title">⬡ NETRUNNER WHITELIST ⬡</div>
+    <div class="cp-sub">MINECRAFT ROLEPLAY • REGISTRATION SYSTEM</div>
 
-<form id="form">
-  <input type="text" id="discord" placeholder="ชื่อดิส" required>
-  <input type="text" id="role" placeholder="ชื่อโรล">
-  <input type="text" id="height" placeholder="ส่วนสูง">
-  <input type="text" id="weight" placeholder="น้ำหนัก">
-  <input type="text" id="age" placeholder="อายุ">
-  <input type="text" id="character" placeholder="นิสัย">
-  <input type="text" id="ability" placeholder="ความสามารถพิเศษ">
-
-  <select id="magic">
-    <option value="">นักเรียน</option>
-    <option value="นักเรียน">นักเลง</option>
-    <option value="อาจารย์">อาจารย์</option>
-    <option value="นักล่าค่าหัว">โจร</option>
-    <option value="ผู้พิทักษ์">ตำรวจ</option>
-  </select>
-
-  <textarea id="reason" placeholder="เหตุผล"></textarea>
-  <input type="file" id="img" accept="image/*">
-
-  <div style="text-align:center;">
-    <button type="submit">สร้างไวริส</button>
-  </div>
-</form>
-
-<div class="card" id="card">
-  <h1 style="
-    text-align:center;
-    color: #ffd300;
-    text-shadow:
-      0 0 5px #ffd300,
-      0 0 10px #ffd300,
-      0 0 20px #ffea00,
-      0 0 40px #ffcc00;
-  ">
-  ✦ Cyberpunk ✦
-  </h1>
-
-  <div class="card-content">
-    
-    <!-- ✅ ใช้ img-box -->
-    <div class="img-box">
-      <img id="cardImg">
+    <div class="cp-grid">
+      <div class="cp-field">
+        <label class="cp-label">Discord Name</label>
+        <input class="cp-input" id="discord" placeholder="ชื่อดิส#0000">
+      </div>
+      <div class="cp-field">
+        <label class="cp-label">ชื่อตัวละคร / โรล</label>
+        <input class="cp-input" id="role" placeholder="ชื่อตัวละคร">
+      </div>
+      <div class="cp-field">
+        <label class="cp-label">อายุ</label>
+        <input class="cp-input" id="age" placeholder="ปี">
+      </div>
+      <div class="cp-field">
+       
+        <select class="cp-select" id="magic">
+          <option value="นักเลง">นักเลง</option>
+          <option value="อาจารย์">อาจารย์</option>
+          <option value="โจร">โจร</option>
+          <option value="ตำรวจ">ตำรวจ</option>
+          <option value="นักเรียน">นักเรียน</option>
+        </select>
+      </div>
+      <div class="cp-field">
+        <label class="cp-label">ส่วนสูง (cm)</label>
+        <input class="cp-input" id="height" placeholder="cm">
+      </div>
+      <div class="cp-field">
+        <label class="cp-label">น้ำหนัก (kg)</label>
+        <input class="cp-input" id="weight" placeholder="kg">
+      </div>
+      <div class="cp-field full">
+        <label class="cp-label">นิสัย / บุคลิก</label>
+        <input class="cp-input" id="character" placeholder="อธิบายนิสัยตัวละคร">
+      </div>
+      <div class="cp-field full">
+        <label class="cp-label">ความสามารถพิเศษ</label>
+        <input class="cp-input" id="ability" placeholder="ความสามารถ / สกิล">
+      </div>
+      <div class="cp-field full">
+        <label class="cp-label">อยากโรลเป็นอะไร</label>
+        <textarea class="cp-textarea" id="roleplay" placeholder="อธิบายว่าอยากโรลเป็นอะไร"></textarea>
+      </div>
+      <div class="cp-field full">
+        <label class="cp-label">รูปตัวละคร</label>
+        <label class="cp-file-label" for="img">
+          <span>📁</span>
+          <span id="file-name">อัปโหลดรูป...</span>
+        </label>
+        <input type="file" id="img" accept="image/*">
+      </div>
     </div>
 
-    <div class="info" id="info"></div>
+
+<button class="cp-btn" id="submit-btn">[ สร้าง VIRUS CARD ]</button>
+
+<button class="cp-btn" id="download-btn" style="display:none; margin-top:10px;">
+  [ DOWNLOAD CARD ]
+</button>
+
+
+
+    <div class="cp-card" id="card">
+      <div class="cp-corner tl"></div>
+      <div class="cp-corner tr"></div>
+      <div class="cp-corner bl"></div>
+      <div class="cp-corner br"></div>
+
+      <div class="cp-card-header">
+        <span class="cp-card-title">VIRUS CARD</span>
+        <span class="cp-card-id" id="card-id">ID: —</span>
+      </div>
+
+      <div class="cp-card-body">
+        <div class="cp-card-img">
+          <span class="cp-no-img" id="no-img-text">NO<br>IMAGE</span>
+          <img id="cardImg" alt="ตัวละคร">
+        </div>
+
+        <div class="cp-card-info">
+          <div class="cp-info-name" id="card-name">—</div>
+          <div class="cp-role-badge" id="card-job">—</div>
+          <div class="cp-stats">
+            <div class="cp-stat">
+              <div class="cp-stat-label">โรล / ชื่อ</div>
+              <div class="cp-stat-value" id="c-role">—</div>
+            </div>
+            <div class="cp-stat">
+              <div class="cp-stat-label">อายุ</div>
+              <div class="cp-stat-value" id="c-age">—</div>
+            </div>
+            <div class="cp-stat">
+              <div class="cp-stat-label">ส่วนสูง</div>
+              <div class="cp-stat-value" id="c-height">—</div>
+            </div>
+            <div class="cp-stat">
+              <div class="cp-stat-label">น้ำหนัก</div>
+              <div class="cp-stat-value" id="c-weight">—</div>
+            </div>
+            <div class="cp-stat wide">
+              <div class="cp-stat-label">นิสัย</div>
+              <div class="cp-stat-value" id="c-char">—</div>
+            </div>
+            <div class="cp-stat wide">
+              <div class="cp-stat-label">ความสามารถ</div>
+              <div class="cp-stat-value" id="c-ability">—</div>
+            </div>
+            <div class="cp-stat wide">
+              <div class="cp-stat-label">อยากโรลเป็น</div>
+              <div class="cp-stat-value" id="c-roleplay">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cp-card-footer">
+        <div class="cp-dot"></div>
+        <span class="cp-status-text">PENDING APPROVAL • CYBERPUNK RP</span>
+      </div>
+    </div>
   </div>
-</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <script>
-const form = document.getElementById("form");
-const card = document.getElementById("card");
-const info = document.getElementById("info");
-const cardImg = document.getElementById("cardImg");
-const imgInput = document.getElementById("img");
+  let imageData = "";
 
-let imageData = "";
+  document.getElementById('img').addEventListener('change', function () {
+    const file = this.files[0];
+    if (!file) return;
 
-/* โหลดรูป */
-imgInput.addEventListener("change", function () {
-  const reader = new FileReader();
-  reader.onload = e => imageData = e.target.result;
+    document.getElementById('file-name').textContent = file.name;
 
-  if (this.files[0]) {
-    reader.readAsDataURL(this.files[0]);
-  }
-});
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      imageData = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
 
-/* submit */
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
+  document.getElementById('submit-btn').addEventListener('click', () => {
+    const discord = document.getElementById('discord').value.trim();
 
-  const discord = document.getElementById("discord").value;
-  const role = document.getElementById("role").value;
-  const height = document.getElementById("height").value;
-  const weight = document.getElementById("weight").value;
-  const magic = document.getElementById("magic").value;
-  const reason = document.getElementById("reason").value;
-  const character = document.getElementById("character").value;
-  const ability = document.getElementById("ability").value;
-  const age = document.getElementById("age").value;
+    if (!discord) {
+      alert('กรุณากรอก Discord Name');
+      return;
+    }
 
-  info.innerHTML = `
-  <b>ชื่อ:</b> ${discord}<br>
-  <b>โรล:</b> ${role}<br>
-  <b>ส่วนสูง:</b> ${height}<br>
-  <b>น้ำหนัก:</b> ${weight}<br>
-  <b>อายุ:</b> ${age}<br>
-  <b>นิสัย:</b> ${character}<br>
-  <b>บทบาท:</b> ${magic}<br>
-  <b>เหตุผล:</b> ${reason}<br>
-  <b>ความสามารถ:</b> ${ability}
-  `;
+    const role = document.getElementById('role').value.trim();
+    const age = document.getElementById('age').value.trim();
+    const magic = document.getElementById('magic').value;
+    const height = document.getElementById('height').value.trim();
+    const weight = document.getElementById('weight').value.trim();
+    const character = document.getElementById('character').value.trim();
+    const ability = document.getElementById('ability').value.trim();
+    const roleplay = document.getElementById('roleplay').value.trim();
 
-  cardImg.src = imageData || "";
-  card.style.display = "block";
+    const id = 'CP-' + Math.random().toString(36).substring(2, 7).toUpperCase();
 
-  form.reset();
-  imageData = "";
-});
+    document.getElementById('card-id').textContent = 'ID: ' + id;
+    document.getElementById('card-name').textContent = discord;
+    document.getElementById('card-job').textContent = magic;
+
+    document.getElementById('c-role').textContent = role || '—';
+    document.getElementById('c-age').textContent = age ? age + ' ปี' : '—';
+    document.getElementById('c-height').textContent = height ? height + ' cm' : '—';
+    document.getElementById('c-weight').textContent = weight ? weight + ' kg' : '—';
+    document.getElementById('c-char').textContent = character || '—';
+    document.getElementById('c-ability').textContent = ability || '—';
+    document.getElementById('c-roleplay').textContent = roleplay || '—';
+
+    const img = document.getElementById('cardImg');
+    const noImg = document.getElementById('no-img-text');
+
+    if (imageData) {
+      img.src = imageData;
+      img.style.display = 'block';
+      noImg.style.display = 'none';
+    } else {
+      img.style.display = 'none';
+      noImg.style.display = 'block';
+    }
+
+    document.getElementById('card').style.display = 'block';
+    document.getElementById('download-btn').style.display = 'block';
+
+    document.getElementById('card').scrollIntoView({
+      behavior: 'smooth'
+    });
+  });
+
+  document.getElementById('download-btn').addEventListener('click', async () => {
+    const card = document.getElementById('card');
+
+    const canvas = await html2canvas(card, {
+      scale: 3,
+      useCORS: true,
+      backgroundColor: null
+    });
+
+    const link = document.createElement('a');
+    link.download = 'VirusCard.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  });
 </script>
 
+
 </body>
+
 </html>
