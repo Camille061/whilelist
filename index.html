@@ -31,13 +31,25 @@
         <input class="cp-input" id="age" placeholder="ปี">
       </div>
       <div class="cp-field">
-       
+
         <select class="cp-select" id="magic">
-          <option value="นักเลง">นักเลง</option>
-          <option value="อาจารย์">อาจารย์</option>
-          <option value="โจร">โจร</option>
+          <option value="ระบุเอง">เลือกเอง(กรอกในช่องด้านล่าง)</option>
+          <option value="อาชญากร ">อาชญากร</option>
+          <option value="แฮกเกอร์">แฮกเกอร์</option>
+          <option value="เจ้าของบริษัทใหญ่">เจ้าของบริษัทใหญ่</option>
           <option value="ตำรวจ">ตำรวจ</option>
-          <option value="นักเรียน">นักเรียน</option>
+          <option value="พนักงานทั่วไป ">พนักงานทั่วไป</option>
+          <option value="นักเรียน ">นักเรียน</option>
+          <option value="คนขับรถ"> คนขับรถ</option>
+          <option value="ช่างยนต์"> ช่างยนต์</option>
+          <option value="นักข่าว"> นักข่าว</option>
+          <option value="คนว่างงาน"> คนว่างงาน</option>
+          <option value="พัศดี"> พัศดี</option>
+          <option value="นักสืบ"> นักสืบ</option>
+
+
+
+
         </select>
       </div>
       <div class="cp-field">
@@ -71,13 +83,11 @@
     </div>
 
 
-<button class="cp-btn" id="submit-btn">[ สร้าง VIRUS CARD ]</button>
+    <button class="cp-btn" id="submit-btn">[ สร้าง VIRUS CARD ]</button>
 
-<button class="cp-btn" id="download-btn" style="display:none; margin-top:10px;">
-  [ DOWNLOAD CARD ]
-</button>
-
-
+    <button class="cp-btn" id="download-btn" style="display:none; margin-top:10px;">
+      [ DOWNLOAD CARD ]
+    </button>
 
     <div class="cp-card" id="card">
       <div class="cp-corner tl"></div>
@@ -140,90 +150,92 @@
   </div>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
-<script>
-  let imageData = "";
+  <script>
+    let imageData = "";
 
-  document.getElementById('img').addEventListener('change', function () {
-    const file = this.files[0];
-    if (!file) return;
+    document.getElementById('img').addEventListener('change', function () {
+      const file = this.files[0];
+      if (!file) return;
 
-    document.getElementById('file-name').textContent = file.name;
+      document.getElementById('file-name').textContent = file.name;
 
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      imageData = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  });
-
-  document.getElementById('submit-btn').addEventListener('click', () => {
-    const discord = document.getElementById('discord').value.trim();
-
-    if (!discord) {
-      alert('กรุณากรอก Discord Name');
-      return;
-    }
-
-    const role = document.getElementById('role').value.trim();
-    const age = document.getElementById('age').value.trim();
-    const magic = document.getElementById('magic').value;
-    const height = document.getElementById('height').value.trim();
-    const weight = document.getElementById('weight').value.trim();
-    const character = document.getElementById('character').value.trim();
-    const ability = document.getElementById('ability').value.trim();
-    const roleplay = document.getElementById('roleplay').value.trim();
-
-    const id = 'CP-' + Math.random().toString(36).substring(2, 7).toUpperCase();
-
-    document.getElementById('card-id').textContent = 'ID: ' + id;
-    document.getElementById('card-name').textContent = discord;
-    document.getElementById('card-job').textContent = magic;
-
-    document.getElementById('c-role').textContent = role || '—';
-    document.getElementById('c-age').textContent = age ? age + ' ปี' : '—';
-    document.getElementById('c-height').textContent = height ? height + ' cm' : '—';
-    document.getElementById('c-weight').textContent = weight ? weight + ' kg' : '—';
-    document.getElementById('c-char').textContent = character || '—';
-    document.getElementById('c-ability').textContent = ability || '—';
-    document.getElementById('c-roleplay').textContent = roleplay || '—';
-
-    const img = document.getElementById('cardImg');
-    const noImg = document.getElementById('no-img-text');
-
-    if (imageData) {
-      img.src = imageData;
-      img.style.display = 'block';
-      noImg.style.display = 'none';
-    } else {
-      img.style.display = 'none';
-      noImg.style.display = 'block';
-    }
-
-    document.getElementById('card').style.display = 'block';
-    document.getElementById('download-btn').style.display = 'block';
-
-    document.getElementById('card').scrollIntoView({
-      behavior: 'smooth'
-    });
-  });
-
-  document.getElementById('download-btn').addEventListener('click', async () => {
-    const card = document.getElementById('card');
-
-    const canvas = await html2canvas(card, {
-      scale: 3,
-      useCORS: true,
-      backgroundColor: null
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        imageData = e.target.result;
+      };
+      reader.readAsDataURL(file);
     });
 
-    const link = document.createElement('a');
-    link.download = 'VirusCard.png';
-    link.href = canvas.toDataURL('image/png');
-    link.click();
-  });
-</script>
+    document.getElementById('submit-btn').addEventListener('click', () => {
+      const discord = document.getElementById('discord').value.trim();
+
+      if (!discord) {
+        alert('กรุณากรอก Discord Name');
+        return;
+      }
+
+      const role = document.getElementById('role').value.trim();
+      const age = document.getElementById('age').value.trim();
+      const magic = document.getElementById('magic').value;
+      const height = document.getElementById('height').value.trim();
+      const weight = document.getElementById('weight').value.trim();
+      const character = document.getElementById('character').value.trim();
+      const ability = document.getElementById('ability').value.trim();
+      const roleplay = document.getElementById('roleplay').value.trim();
+
+
+
+      const id = 'CP-' + Math.random().toString(36).substring(2, 7).toUpperCase();
+
+      document.getElementById('card-id').textContent = 'ID: ' + id;
+      document.getElementById('card-name').textContent = discord;
+      document.getElementById('card-job').textContent = `บทบาท: ${magic}`
+
+      document.getElementById('c-role').textContent = role || '—';
+      document.getElementById('c-age').textContent = age ? age + ' ปี' : '—';
+      document.getElementById('c-height').textContent = height ? height + ' cm' : '—';
+      document.getElementById('c-weight').textContent = weight ? weight + ' kg' : '—';
+      document.getElementById('c-char').textContent = character || '—';
+      document.getElementById('c-ability').textContent = ability || '—';
+      document.getElementById('c-roleplay').textContent = roleplay || '—';
+
+      const img = document.getElementById('cardImg');
+      const noImg = document.getElementById('no-img-text');
+
+      if (imageData) {
+        img.src = imageData;
+        img.style.display = 'block';
+        noImg.style.display = 'none';
+      } else {
+        img.style.display = 'none';
+        noImg.style.display = 'block';
+      }
+
+      document.getElementById('card').style.display = 'block';
+      document.getElementById('download-btn').style.display = 'block';
+
+      document.getElementById('card').scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+
+    document.getElementById('download-btn').addEventListener('click', async () => {
+      const card = document.getElementById('card');
+
+      const canvas = await html2canvas(card, {
+        scale: 3,
+        useCORS: true,
+        backgroundColor: null
+      });
+
+      const link = document.createElement('a');
+      link.download = 'VirusCard.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    });
+  </script>
 
 
 </body>
